@@ -30,3 +30,33 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
+
+RESOURCES += \
+    Resource.qrc \
+    Resource.qrc
+
+DESTDIR = ./
+
+CONFIG -= debug_and_release
+
+
+#程序版本
+VERSION = 0.0.1
+#程序图标
+# RC_ICONS = $$PWD\images\app_Icon.ico
+#公司名称
+QMAKE_TARGET_COMPANY ="WLC"
+#程序说明
+QMAKE_TARGET_DESCRIPTION = "Dictionary_EN_EN"
+#版权信息
+QMAKE_TARGET_COPYRIGHT = "Copyright(C) 2025 WLC Co.,Ltd."
+#程序名称
+QMAKE_TARGET_PRODUCT = "Dictionary_EN_EN"
+#程序语言
+#0x0800代表和系统当前语言一致
+RC_LANG = 0x0800
+
+# In Windows cmd /c stops after the first command finishes unless you explicitly chain with &&.
+QMAKE_POST_LINK += cmd /c $$PWD\\bat\\copy_images.bat
