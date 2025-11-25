@@ -45,7 +45,7 @@ CONFIG -= debug_and_release
 #程序版本
 VERSION = 0.0.1
 #程序图标
-# RC_ICONS = $$PWD\images\app_Icon.ico
+RC_ICONS = $$PWD\images\app_icon.ico
 #公司名称
 QMAKE_TARGET_COMPANY ="WLC"
 #程序说明
