@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += network
+QT       += multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -59,4 +60,4 @@ QMAKE_TARGET_PRODUCT = "Dictionary_EN_EN"
 RC_LANG = 0x0800
 
 # In Windows cmd /c stops after the first command finishes unless you explicitly chain with &&.
-QMAKE_POST_LINK += cmd /c $$PWD\\bat\\copy_images.bat
+QMAKE_POST_LINK += cmd /c $$PWD\\bat\\copy_images.bat && cmd /c $$PWD\\bat\\\copy_Auto_Add_Version_and_Delete_self_To_release_folder.bat

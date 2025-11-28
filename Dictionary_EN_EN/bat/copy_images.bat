@@ -1,6 +1,6 @@
 @echo off
 set SRC=%~dp0..\images
-set DST=%~dp0..\..\WLC_Dictionary_release\images
+set DST=%~dp0..\..\Dictionary_EN_EN_release\images
 
 echo Copying from %SRC% to %DST%
 
