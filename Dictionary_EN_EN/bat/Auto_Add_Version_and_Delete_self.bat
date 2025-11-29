@@ -21,15 +21,15 @@ if exist "Makefile" (
     echo Deleted Makefile
 )
 
-if exist "english_word_history.txt" (
-    del "english_word_history.txt" /f /q
-    echo Deleted english_word_history.txt
-)
+:: if exist "english_word_history.txt" (
+::    del "english_word_history.txt" /f /q
+::    echo Deleted english_word_history.txt
+:: )
 
-if exist "word_audio" (
-    rmdir /s /q "word_audio"
-    echo Deleted folder: word_audio
-)
+:: if exist "word_audio" (
+::    rmdir /s /q "word_audio"
+::    echo Deleted folder: word_audio
+:: )
 
 echo Cleanup done.
 
@@ -73,23 +73,31 @@ set "newname=Dictionary_EN_EN_release_V!max_major!.!max_minor!.!next_patch!"
 echo Next version: !newname!
 
 :: ---------------------------------------------------------
-:: COPY Dictionary_EN_EN_release → new version folder (excluding this bat file)
+:: COPY Dictionary_EN_EN_release → new version folder (excluding specific files)
 :: ---------------------------------------------------------
-echo Copying Dictionary_EN_EN_release → !newname! (excluding this script)
+echo Copying Dictionary_EN_EN_release → !newname! 
+echo (Excluding: %~nx0, word_audio, english_word_history.txt)
 
 :: Create destination folder first
 mkdir "%PARENT_DIR%\!newname!" >nul 2>&1
 
-:: Copy everything except this batch file
+:: Copy folders except "word_audio" and the new version folder
 for /d %%F in (*) do (
     if /i not "%%F"=="!newname!" (
-        xcopy "%%F" "%PARENT_DIR%\!newname!\%%F" /E /I /H /K /Y >nul
+        if /i not "%%F"=="word_audio" (
+            xcopy "%%F" "%PARENT_DIR%\!newname!\%%F" /E /I /H /K /Y >nul
+            echo Copied folder: %%F
+        )
     )
 )
 
+:: Copy files except batch file and english_word_history.txt
 for %%F in (*.*) do (
     if /i not "%%F"=="%~nx0" (
-        copy "%%F" "%PARENT_DIR%\!newname!\%%F" >nul
+        if /i not "%%F"=="english_word_history.txt" (
+            copy "%%F" "%PARENT_DIR%\!newname!\%%F" >nul
+            echo Copied file: %%F
+        )
     )
 )
 
